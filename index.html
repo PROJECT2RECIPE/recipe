@@ -22,10 +22,35 @@
     }
 
     .logo {
-  height: 100px;           
+  height: 160px;           
   width: auto;
   object-fit: contain;
 }
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+  }
+
+  input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #f26522;
+    color: white;
+     border: 1px solid #ccc;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #d94c0d;
+  }
 
 .navbar {
   display: flex;
@@ -36,7 +61,7 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  height: 70px;   
+  height: 110px;   
 }
 
 
@@ -211,15 +236,21 @@
   <!-- Navbar -->
   <nav class="navbar">
   <div class="nav-left">
-  <img src="logom.jpg" alt="FlavourHub Logo" class="logo" />
-
+    <img src="logomake.png" alt="FlavourHub Logo" class="logo" />
   </div>
+  <div class="search-container">
+  <input type="text" id="searchInput" placeholder="🔍Search for a recipe...                                     " >
+  <button onclick="search()">Search</button>
+</div>
+<div id="results"></div>
+
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
     <li><a href="#recipes">Recipes</a></li>
     <li><a href="#upload">Upload</a></li>
     <li><a href="#categories">Categories</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact">Sign In</a></li>
+
   </ul>
 </nav>
 
@@ -294,18 +325,7 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Have feedback or a recipe suggestion? Reach out to us!</p>
-    <form>
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea rows="4" placeholder="Your Message"></textarea>
-      <input type="submit" value="Send Message" />
-    </form>
-  </section>
-
+    
   <!-- Footer -->
   <footer>
     &copy; 2025 FlavourHub | All rights reserved.
