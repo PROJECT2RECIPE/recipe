@@ -376,6 +376,44 @@
   <footer>
     &copy; 2025 FlavourHub | All rights reserved.
   </footer>
+<script>
+  async function search() {
+    const query = document.getElementById("searchInput").value;
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = "Searching... 🍲";
+
+    const apiKey = "115bb9dbdd4941a79e05d036c5adb1a8"; // ✅ No space!
+
+    try {
+      const res = await fetch(
+        `https://corsproxy.io/?https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=5&apiKey=${apiKey}`
+      );
+      const data = await res.json();
+
+      if (!data.results || data.results.length === 0) {
+        resultsDiv.innerHTML = "<p>No recipes found 😢</p>";
+        return;
+      }
+
+      resultsDiv.innerHTML = "<h3>Search Results:</h3>";
+
+      data.results.forEach(recipe => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+          <img src="${recipe.image}" alt="${recipe.title}">
+          <h3>${recipe.title}</h3>
+          <p><a href="https://spoonacular.com/recipes/${recipe.title.replace(/ /g, "-")}-${recipe.id}" target="_blank" style="color:#ffcc70;">View Recipe 🔗</a></p>
+        `;
+        resultsDiv.appendChild(card);
+      });
+    } catch (error) {
+      console.error("Error fetching from Spoonacular:", error);
+      resultsDiv.innerHTML = "<p>Oops! Something went wrong 😵‍💫</p>";
+    }
+  }
+</script>
+
 
 </body>
 </html>
